@@ -19,7 +19,6 @@ var bot = new builder.UniversalBot(connector);
 var recognizer = new apiairecognizer('ed7772a94ebd4ab09d84792bbecd9693');
 var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 
-bot.dialog('/', intents);
 intents.matches('whatisWeather', [function (session, args) {
     var city = builder.EntityRecognizer.findEntity(args.entities, 'cities');
     if (city) {

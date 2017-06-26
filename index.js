@@ -27,9 +27,9 @@ var intents = new builder.IntentDialog({
                 recognizers: [recognizer]
 });
 
-bot.dialog('/',intents);
+bot.dialog('/', intents);
 
-intents.matches('whatisWeather',[function(session,args){
+intents.matches('whatisWeather',[function (session,args){
         var city = builder.EntityRecognizer.findEntity(args.entities,'cities');
         if (city){
             var city_name = city.entity;

@@ -39,7 +39,8 @@ intents.matches('whatisWeather',[function(session,args){
             temp = body.current.temp_c;
                 session.send("It's " + temp + " degrees celsius in " + city_name);
             });
-        }else{
+        }
+        else {
                 builder.Prompts.text(session, 'Which city do you want the weather for?');
             }
     },

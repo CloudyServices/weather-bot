@@ -57,7 +57,7 @@ intents.matches('whatisWeather',[
     }
 ]);
 
-intents.matches('smalltalk.greetings.*',function(session, args){
+intents.matches('smalltalk.greetings.bye',function(session, args){
     var fulfillment = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
     if (fulfillment){
         var speech = fulfillment.entity;

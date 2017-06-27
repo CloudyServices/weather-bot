@@ -67,6 +67,16 @@ intents.matches('smalltalk.greetings.hello',function(session, args){
             }
 });
 
+intents.matches('smalltalk.greetings.bye', function (session, args) {
+    var fulfillment = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
+    if (fulfillment) {
+        var speech = fulfillment.entity;
+        session.send(speech);
+    } else {
+        session.send('Sorry...not sure how to respond to that');
+    }
+});
+
 intents.onDefault(function(session){
                 session.send("Sorry...can you please rephrase?");
             });

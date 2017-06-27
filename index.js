@@ -77,16 +77,6 @@ intents.matches('smalltalk.greetings.bye', function (session, args) {
     }
 });
 
-intents.matches('news.search', function (session, args) {
-    var url = "https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=11236426c78341079081cb95797f80ae"
-    request(url, function (error, response, body) {
-        body = JSON.parse(body);
-        title = body.articles.title;
-        session.send(title);
-    }
-
-});
-
 intents.onDefault(function(session){
                 session.send("Sorry...can you please rephrase?");
             });

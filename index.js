@@ -82,11 +82,11 @@ intents.matches('news.search', [
         var source = builder.EntityRecognizer.findEntity(args.entities, 'news-source');
         if (source) {
             var source_name = source.entity;
-            var url = "https://newsapi.org/v1/articles?source=" + source_name + "&sortBy=latest&apiKey=11236426c78341079081cb95797f80ae";
+            var url = "https://newsapi.org/v1/articles?source=techcrunch&apiKey=11236426c78341079081cb95797f80ae";
             request(url, function (error, response, body) {
                 body = JSON.parse(body);
                 title = body.articles.title;
-                session.send(source-name + ": " + title);
+                session.send(title);
             });
         } else {
             builder.Prompts.text(session, 'Which source do you want the news from (BBC,CNN,Fox etc.?');

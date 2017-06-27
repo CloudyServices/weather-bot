@@ -77,15 +77,32 @@ intents.matches('smalltalk.greetings.bye', function (session, args) {
     }
 });
 
-intents.matches('news.search', function (session, args) {
-    var fulfillment = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
-    if (fulfillment) {
-        var speech = fulfillment.entity;
-        session.send(speech);
-    } else {
-        session.send('Sorry...not sure how to respond to that');
+intents.matches('news.search', [
+    function (session, args) {
+        var source = builder.EntityRecognizer.findEntity(args.entities, 'news-source');
+        if (source) {
+            var source_name = source.entity;
+            var url = "https://newsapi.org/v1/articles?source=" + source_name + "&sortBy=latest&apiKey=11236426c78341079081cb95797f80ae";
+            request(url, function (error, response, body) {
+                body = JSON.parse(body);
+                title = body.articles.title;
+                session.send(source-name + ": " + title);
+            });
+        } else {
+            builder.Prompts.text(session, 'Which source do you want the news from (BBC,CNN,Fox etc.?');
+        }
+    },
+    function (session, results) {
+        var source_name = results.response;
+        var url = "https://newsapi.org/v1/articles?source=" + source_name + "&sortBy=latest&apiKey=11236426c78341079081cb95797f80ae";
+        request(url, function (error, response, body) {
+            body = JSON.parse(body);
+            title = body.articles.title;
+            session.send(source - name + ": " + title);
+        });
     }
-});
+]);
+
 
 intents.onDefault(function(session){
                 session.send("Sorry...can you please rephrase?");

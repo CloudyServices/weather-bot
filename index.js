@@ -39,9 +39,10 @@ intents.matches('whatisWeather',[
             var url = "http://api.apixu.com/v1/current.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name;
             request(url,function(error,response,body){
                 body = JSON.parse(body);
+                city_proper = body.current.location.name;
                 temp = body.current.temp_c;
                 text = body.current.condition.text;
-                session.send("It's " + temp + " degrees celsius in " + city_name + ", " + text);
+                session.send("It's " + temp + " degrees celsius in " + body.current.location.name + ", " + text + ".");
             });
         }else{
                 builder.Prompts.text(session, 'Which city do you want the weather for?');
@@ -52,9 +53,10 @@ intents.matches('whatisWeather',[
         var url = "http://api.apixu.com/v1/current.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name;
             request(url,function(error,response,body){
                 body = JSON.parse(body);
+                city_proper = body.current.location.name;
                 temp = body.current.temp_c;
                 text = body.current.condition.text;
-                session.send("It's " + temp + " degrees celsius in " + city_name + ", " + text);
+                session.send("It's " + temp + " degrees celsius in " + body.current.location.name + ", " + text + ".");
         });
     }
 ]);

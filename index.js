@@ -42,7 +42,6 @@ intents.matches('whatisWeather',[
                 city_proper = body.location.name;
                 temp = body.current.temp_c;
                 text = body.current.condition.text;
-                icon = body.condition.icon;
                 session.send("It's " + temp + " degrees celsius in " + city_proper + ", " + text + ".");
             });
         }else{

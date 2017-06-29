@@ -40,7 +40,7 @@ intents.matches('whatisWeather',[
             request(url,function(error,response,body){
                 body = JSON.parse(body);
                 temp = body.current.temp_c;
-                text = body.current.text;
+                text = body.current.condition:text;
                 session.send("It's " + temp + " degrees celsius in " + city_name + ", " + text);
             });
         }else{
@@ -53,7 +53,7 @@ intents.matches('whatisWeather',[
             request(url,function(error,response,body){
                 body = JSON.parse(body);
                 temp = body.current.temp_c;
-                text = body.current.text
+                text = body.current.condition:text;
                 session.send("It's " + temp + " degrees celsius in " + city_name + ", " + text);
         });
     }

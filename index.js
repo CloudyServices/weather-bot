@@ -81,10 +81,10 @@ intents.matches('smalltalk.greetings.bye', function (session, args) {
     }
 });
 
-intents.matches('features' {
+intents.matches('features', function (session, args) {
     session.send('Version. 0.86 (29/06/2017)'),
-    session.send('- Current weather'),
-    session.send('- Smalltalk'),
+        session.send('- Current weather'),
+        session.send('- Smalltalk'),
 });
 
 intents.onDefault(function(session){

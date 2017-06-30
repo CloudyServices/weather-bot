@@ -82,10 +82,8 @@ intents.matches('smalltalk.greetings.bye', function (session, args) {
 });
 
 intents.matches('features', function(session){
-    session.send('Version. 0.86 (29/06/2017) \r\n Test');
-    session.send('=Current Weather');
-    session.send('=Smalltalk');
-            });
+    session.send('Version. 0.87 (30/06/2017) - Current Weather, Smalltalk.');
+                });
 
 intents.onDefault(function(session){
                 session.send("Sorry...can you please rephrase?");

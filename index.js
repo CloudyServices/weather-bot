@@ -72,7 +72,7 @@ intents.matches('whatisWeatherForecast', [
                 city_proper = body.location.name;
                 dateday1 = body.forecast.forecastday[0].date;
                 tempday1 = body.forecast.forecastday[0].day.maxtemp_c;
-                textday1 = body.forecast.forecastday[0].condition.text;
+                textday1 = body.forecast.forecastday[0].day.condition.text;
                 session.send(city_proper + ": " + dateday1 + ", " + tempday1 + "C, " + textday1 + ".");
             });
         } else {

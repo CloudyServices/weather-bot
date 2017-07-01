@@ -66,7 +66,7 @@ intents.matches('whatisWeatherForecast', [
         var city = builder.EntityRecognizer.findEntity(args.entities, 'cities');
         if (city) {
             var city_name = city.entity;
-            var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "days=3";
+            var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "&days=3";
             request(url, function (error, response, body) {
                 body = JSON.parse(body);
                 city_proper = body.location.name;
@@ -81,7 +81,7 @@ intents.matches('whatisWeatherForecast', [
     },
     function (session, results) {
         var city_name = results.response;
-        var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "days=3";
+        var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "&days=3";
         request(url, function (error, response, body) {
             body = JSON.parse(body);
             city_proper = body.location.name;
@@ -113,7 +113,7 @@ intents.matches('smalltalk.greetings.bye', function (session, args) {
 });
 
 intents.matches('features', function(session){
-    session.send('v0.87 (30/06/2017) - Current Weather, Smalltalk.');
+    session.send('v0.88 (01/07/2017) - Current Weather, Forecast Weather, Smalltalk.');
                 });
 
 intents.onDefault(function(session){

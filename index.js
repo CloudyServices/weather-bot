@@ -67,7 +67,7 @@ intents.matches('whatisWeatherForecast', [
         var city = builder.EntityRecognizer.findEntity(args.entities, 'cities');
         if (city) {
             var city_name = city.entity;
-            var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "&days=3";
+            var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "&days=5";
             request(url, function (error, response, body) {
                 body = JSON.parse(body);
                 city_proper = body.location.name;
@@ -80,6 +80,12 @@ intents.matches('whatisWeatherForecast', [
                 dateday3 = moment(body.forecast.forecastday[2].date).format('dddd');
                 tempday3 = body.forecast.forecastday[2].day.maxtemp_c;
                 textday3 = body.forecast.forecastday[2].day.condition.text;
+                dateday4 = moment(body.forecast.forecastday[3].date).format('dddd');
+                tempday4 = body.forecast.forecastday[3].day.maxtemp_c;
+                textday4 = body.forecast.forecastday[3].day.condition.text;
+                dateday5 = moment(body.forecast.forecastday[4].date).format('dddd');
+                tempday5 = body.forecast.forecastday[4].day.maxtemp_c;
+                textday5 = body.forecast.forecastday[4].day.condition.text;
                 session.send(city_proper + ": <br/>" + dateday1 + ", " + tempday1 + "C, " + textday1 + ".<br/>" + dateday2 + ", " + tempday2 + "C, " + textday2 + ".<br/>" + dateday3 + ", " + tempday3 + "C, " + textday3 + ".");
             });
         } else {
@@ -88,7 +94,7 @@ intents.matches('whatisWeatherForecast', [
     },
     function (session, results) {
         var city_name = results.response;
-        var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "&days=3";
+        var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "&days=5";
         request(url, function (error, response, body) {
             body = JSON.parse(body);
             city_proper = body.location.name;

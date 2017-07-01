@@ -86,7 +86,7 @@ intents.matches('whatisWeatherForecast', [
                 dateday5 = moment(body.forecast.forecastday[4].date).format('dddd');
                 tempday5 = body.forecast.forecastday[4].day.maxtemp_c;
                 textday5 = body.forecast.forecastday[4].day.condition.text;
-                session.send(city_proper + ": <br/>" + dateday1 + ", " + tempday1 + "C, " + textday1 + ".<br/>" + dateday2 + ", " + tempday2 + "C, " + textday2 + ".<br/>" + dateday3 + ", " + tempday3 + "C, " + textday3 + ".");
+                session.send(city_proper + ": <br/>" + dateday1 + ", " + tempday1 + "C, " + textday1 + ".<br/>" + dateday2 + ", " + tempday2 + "C, " + textday2 + ".<br/>" + dateday3 + ", " + tempday3 + "C, " + textday3 + ".<br/>" + dateday4 + ", " + tempday4 + "C, " + textday4 + ".<br/>" + dateday5 + ", " + tempday5 + "C, " + textday5 + ".");
             });
         } else {
             builder.Prompts.text(session, 'Which city do you want the weather for?');
@@ -126,7 +126,7 @@ intents.matches('smalltalk.greetings.bye', function (session, args) {
 });
 
 intents.matches('features', function(session){
-    session.send('v0.88 (01/07/2017) - Current Weather, Forecast Weather, Smalltalk.');
+    session.send('v0.89 (01/07/2017) - Current Weather, 5 day Forecast Weather, Smalltalk.');
                 });
 
 intents.onDefault(function(session){

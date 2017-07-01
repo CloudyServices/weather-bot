@@ -70,7 +70,7 @@ intents.matches('whatisWeatherForecast', [
             request(url, function (error, response, body) {
                 body = JSON.parse(body);
                 city_proper = body.location.name;
-                dateday1 = body.forecast.forecastday.[0].date;
+                dateday1 = body.forecast.forecastday.0.date;
                 //tempday1 = body.forecast.forecastday.[0].day.maxtemp_c;
                 //textday1 = body.forecast.forecastday.[0].condition.text;
                 session.send(city_proper + ": " + dateday1);

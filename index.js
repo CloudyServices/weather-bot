@@ -73,7 +73,13 @@ intents.matches('whatisWeatherForecast', [
                 dateday1 = body.forecast.forecastday[0].date;
                 tempday1 = body.forecast.forecastday[0].day.maxtemp_c;
                 textday1 = body.forecast.forecastday[0].day.condition.text;
-                session.send(city_proper + ": " + dateday1 + ", " + tempday1 + "C, " + textday1 + ".");
+                dateday2 = body.forecast.forecastday[1].date;
+                tempday2 = body.forecast.forecastday[1].day.maxtemp_c;
+                textday2 = body.forecast.forecastday[1].day.condition.text;
+                dateday3 = body.forecast.forecastday[2].date;
+                tempday3 = body.forecast.forecastday[2].day.maxtemp_c;
+                textday3 = body.forecast.forecastday[2].day.condition.text;
+                session.send(city_proper + ": " + dateday1 + ", " + tempday1 + "C, " + textday1 + ".  " + dateday2 + ", " + tempday2 + "C, " + textday2 + ".  " + dateday3 + ", " + tempday3 + "C, " + textday3 + ".");
             });
         } else {
             builder.Prompts.text(session, 'Which city do you want the weather for?');

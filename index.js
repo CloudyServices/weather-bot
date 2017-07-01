@@ -74,10 +74,10 @@ intents.matches('whatisWeatherForecast', [
                 dateday1 = moment(body.forecast.forecastday[0].date).format('dddd');
                 tempday1 = body.forecast.forecastday[0].day.maxtemp_c;
                 textday1 = body.forecast.forecastday[0].day.condition.text;
-                dateday2 = body.forecast.forecastday[1].date;
+                dateday2 = moment(body.forecast.forecastday[1].date).format('dddd');
                 tempday2 = body.forecast.forecastday[1].day.maxtemp_c;
                 textday2 = body.forecast.forecastday[1].day.condition.text;
-                dateday3 = body.forecast.forecastday[2].date;
+                dateday3 = moment(body.forecast.forecastday[2].date).format('dddd');
                 tempday3 = body.forecast.forecastday[2].day.maxtemp_c;
                 textday3 = body.forecast.forecastday[2].day.condition.text;
                 session.send(city_proper + ": <br/>" + dateday1 + ", " + tempday1 + "C, " + textday1 + ".<br/>" + dateday2 + ", " + tempday2 + "C, " + textday2 + ".<br/>" + dateday3 + ", " + tempday3 + "C, " + textday3 + ".");

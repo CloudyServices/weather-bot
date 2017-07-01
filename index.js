@@ -2,6 +2,7 @@ var builder = require('botbuilder');
 var restify = require('restify');
 var apiairecognizer = require('api-ai-recognizer');
 var request = require('request');
+var moment = require('moment');
 
 //=========================================================
 // Bot Setup
@@ -70,7 +71,7 @@ intents.matches('whatisWeatherForecast', [
             request(url, function (error, response, body) {
                 body = JSON.parse(body);
                 city_proper = body.location.name;
-                dateday1 = body.forecast.forecastday[0].date;
+                dateday1 = moment(body.forecast.forecastday[0].date).format('dddd');
                 tempday1 = body.forecast.forecastday[0].day.maxtemp_c;
                 textday1 = body.forecast.forecastday[0].day.condition.text;
                 dateday2 = body.forecast.forecastday[1].date;

@@ -61,6 +61,37 @@ intents.matches('whatisWeather',[
     }
 ]);
 
+intents.matches('whatisWeatherForecast', [
+    function (session, args) {
+        var city = builder.EntityRecognizer.findEntity(args.entities, 'cities');
+        if (city) {
+            var city_name = city.entity;
+            var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "days=3";
+            request(url, function (error, response, body) {
+                body = JSON.parse(body);
+                city_proper = body.location.name;
+                dateday1 = body.forecast.forecastday.date;
+                tempday1 = body.forecast.forecastday.day.maxtemp_c;
+                textday1 = body.forecast.forecastday.condition.text;
+                session.send(city_proper + ": " + dateday1 + ", " + tempday1 + ", " + textday1);
+            });
+        } else {
+            builder.Prompts.text(session, 'Which city do you want the weather for?');
+        }
+    },
+    function (session, results) {
+        var city_name = results.response;
+        var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "days=3";
+        request(url, function (error, response, body) {
+            body = JSON.parse(body);
+            city_proper = body.location.name;
+            temp = body.current.temp_c;
+            text = body.current.condition.text;
+            session.send("It's " + temp + " degrees forecast celsius in " + city_proper + ", " + text + ".");
+        });
+    }
+]);
+
 intents.matches('smalltalk.greetings.hello', function(session, args){
     var fulfillment = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
     if (fulfillment){
@@ -82,7 +113,7 @@ intents.matches('smalltalk.greetings.bye', function (session, args) {
 });
 
 intents.matches('features', function(session){
-    session.send('Version. 0.87 (30/06/2017) - Current Weather, Smalltalk.');
+    session.send('v0.87 (30/06/2017) - Current Weather, Smalltalk.');
                 });
 
 intents.onDefault(function(session){

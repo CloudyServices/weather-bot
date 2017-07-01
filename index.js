@@ -71,9 +71,9 @@ intents.matches('whatisWeatherForecast', [
                 body = JSON.parse(body);
                 city_proper = body.location.name;
                 dateday1 = body.forecast.forecastday[0].date;
-                //tempday1 = body.forecast.forecastday.[0].day.maxtemp_c;
-                //textday1 = body.forecast.forecastday.[0].condition.text;
-                session.send(city_proper + ": " + dateday1);
+                tempday1 = body.forecast.forecastday[0].day.maxtemp_c;
+                textday1 = body.forecast.forecastday[0].condition.text;
+                session.send(city_proper + ": " + dateday1 + ", " + tempday1 + "C, " + textday1 + ".");
             });
         } else {
             builder.Prompts.text(session, 'Which city do you want the weather for?');

@@ -107,16 +107,16 @@ intents.matches('whatisWeatherForecast', [
 
 intents.matches('whatisNews', [
     function (session, args) {
-        var newssource = builder.EntityRecognizer.findEntity(args.entities, 'source');
+        var newssource = builder.EntityRecognizer.findEntity(args.entities, 'news-source');
         if (newssource) {
-            //var _name = city.entity;
-            var url = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=latest&apiKey=11236426c78341079081cb95797f80ae";
+            var newssource_name = newsource.entity;
+            var url = "https://newsapi.org/v1/articles?source=" + newssource_name +"&sortBy=latest&apiKey=11236426c78341079081cb95797f80ae";
             request(url, function (error, response, body) {
                 newsart1 = body.article[0].title;
                 newsart2 = body.article[1].title;
                 newsart3 = body.article[2].title;
                 newsart4 = body.article[3].title;
-                session.send("BBC News Latest: <br/>" + newsart1 + "<br/>" + newsart2 + "<br/>" + newsart3 + "<br/>" + newsart4);
+                session.send(newssource_name + " Latest: <br/>" + newsart1 + "<br/>" + newsart2 + "<br/>" + newsart3 + "<br/>" + newsart4);
             });
         } else {
             builder.Prompts.text(session, 'Which city do you want the weather for?');

@@ -112,10 +112,10 @@ intents.matches('whatisNews', [
             var newssource_name = newssource.entity;
             var url = "https://newsapi.org/v1/articles?source=" + newssource_name +"&sortBy=latest&apiKey=11236426c78341079081cb95797f80ae";
             request(url, function (error, response, body) {
-                newsart1 = body.article[0].title;
-                newsart2 = body.article[1].title;
-                newsart3 = body.article[2].title;
-                newsart4 = body.article[3].title;
+                newsart1 = body.articles[0].title;
+                newsart2 = body.articles[1].title;
+                newsart3 = body.articles[2].title;
+                newsart4 = body.articles[3].title;
                 session.send(newssource_name + " Latest: <br/>" + newsart1 + "<br/>" + newsart2 + "<br/>" + newsart3 + "<br/>" + newsart4);
             });
         } else {

@@ -105,7 +105,37 @@ intents.matches('whatisWeatherForecast', [
     }
 ]);
 
-intents.matches('smalltalk.greetings.hello', function(session, args){
+intents.matches('whatisNews', [
+    function (session, args) {
+        var news-source = builder.EntityRecognizer.findEntity(args.entities, 'source');
+        if (city) {
+            var city_name = city.entity;
+            var url = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=latest&apiKey=11236426c78341079081cb95797f80ae";
+            request(url, function (error, response, body) {
+                newsart1 = body.article[0].title;
+                newsart2 = body.article[1].title;
+                newsart3 = body.article[2].title;
+                newsart4 = body.article[3].title;
+                session.send("BBC News Latest: <br/>" + newsart1 + "<br/>" + newsart2 + "<br/>" + newsart3 + "<br/>" + newsart4);
+            });
+        } else {
+            builder.Prompts.text(session, 'Which city do you want the weather for?');
+        }
+    },
+    function (session, results) {
+        var city_name = results.response;
+        var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "&days=5";
+        request(url, function (error, response, body) {
+            body = JSON.parse(body);
+            city_proper = body.location.name;
+            temp = body.current.temp_c;
+            text = body.current.condition.text;
+            session.send("It's " + temp + " degrees forecast celsius in " + city_proper + ", " + text + ".");
+        });
+    }
+]);
+
+intents.matches('smalltalk.greetings.hello', function (session, args) {
     var fulfillment = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
     if (fulfillment){
         var speech = fulfillment.entity;

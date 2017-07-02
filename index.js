@@ -112,6 +112,7 @@ intents.matches('whatisNews', [
             var newssource_name = newssource.entity;
             var url = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=11236426c78341079081cb95797f80ae";
             request(url, function (error, response, body) {
+                body = JSON.parse(body);
                 newsart1 = body.articles[0].title;
                 newsart2 = body.articles[1].title;
                 newsart3 = body.articles[2].title;

@@ -107,7 +107,7 @@ intents.matches('whatisWeatherForecast', [
 
 intents.matches('whatisNews', [
     function (session, args) {
-        var news-source = builder.EntityRecognizer.findEntity(args.entities, 'source');
+        var newssource = builder.EntityRecognizer.findEntity(args.entities, 'source');
         if (city) {
             var city_name = city.entity;
             var url = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=latest&apiKey=11236426c78341079081cb95797f80ae";

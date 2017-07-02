@@ -109,7 +109,7 @@ intents.matches('whatisNews', [
     function (session, args) {
         var newssource = builder.EntityRecognizer.findEntity(args.entities, 'news-source');
         if (newssource) {
-            var newssource_name = newsource.entity;
+            var newssource_name = newssource.entity;
             var url = "https://newsapi.org/v1/articles?source=" + newssource_name +"&sortBy=latest&apiKey=11236426c78341079081cb95797f80ae";
             request(url, function (error, response, body) {
                 newsart1 = body.article[0].title;

@@ -110,7 +110,7 @@ intents.matches('whatisNews', [
         var newssource = builder.EntityRecognizer.findEntity(args.entities, 'news-source');
         if (newssource) {
             var newssource_name = newssource.entity;
-            var url = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=11236426c78341079081cb95797f80ae";
+            var url = "https://newsapi.org/v1/articles?source=" + newssource_name + "&sortBy=top&apiKey=11236426c78341079081cb95797f80ae";
             request(url, function (error, response, body) {
                 body = JSON.parse(body);
                 newsart1 = body.articles[0].title;

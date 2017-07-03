@@ -118,7 +118,7 @@ intents.matches('whatisNews', [
                 newsart2 = body.articles[1].title;
                 newsart3 = body.articles[2].title;
                 newsart4 = body.articles[3].title;
-                session.send(newssource + newssource_name + " Latest: <br/>- " + newsart1 + "<br/>- " + newsart2 + "<br/>- " + newsart3 + "<br/>- " + newsart4);
+                session.send(newssource.entity + newssource_name + " Latest: <br/>- " + newsart1 + "<br/>- " + newsart2 + "<br/>- " + newsart3 + "<br/>- " + newsart4);
             });
         } else {
             builder.Prompts.text(session, 'Which city do you want the weather for?');

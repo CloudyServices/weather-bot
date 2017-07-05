@@ -105,7 +105,7 @@ intents.matches('whatisWeatherForecast', [
     }
 ]);
 
-intents.matches('whatisNews',
+intents.matches('whatisNews', [
     function (session, args) {
         var newssource = builder.EntityRecognizer.findEntity(args.entities, 'news-source');
         var newscategory = builder.EntityRecognizer.findEntity(args.entities, 'topic');

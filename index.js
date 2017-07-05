@@ -63,7 +63,7 @@ intents.matches('whatisWeather',[
 ]);
 
 intents.matches('whatisWeatherForecast', [
-    function (session, args) {
+    function(session, args){
         var city = builder.EntityRecognizer.findEntity(args.entities, 'cities');
         if (city) {
             var city_name = city.entity;
@@ -105,11 +105,11 @@ intents.matches('whatisWeatherForecast', [
     }
 ]);
 
-intents.matches('whatisNews', [
+intents.matches('whatisNews',
     function (session, args) {
         var newssource = builder.EntityRecognizer.findEntity(args.entities, 'news-source');
         var newscategory = builder.EntityRecognizer.findEntity(args.entities, 'topic');
-        session.send(newssource.entity + " " + newscategory.entity);
+        session.send(newssource.entity + " " + newscategory.entity + " " + news-source + " " + topic);
         if (newssource) {
             var newssource_name = newssource.entity;
             var url = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=11236426c78341079081cb95797f80ae";

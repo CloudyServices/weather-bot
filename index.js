@@ -65,6 +65,7 @@ intents.matches('whatisWeather',[
 intents.matches('whatisWeatherForecast', [
     function (session, args) {
         var city = builder.EntityRecognizer.findEntity(args.entities, 'cities');
+        send.session(city);
         if (city) {
             var city_name = city.entity;
             var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "&days=5";

@@ -34,8 +34,12 @@ bot.dialog('/',intents);
 
 intents.matches('whatisWeather',[
     function(session,args){
-        var city = builder.EntityRecognizer.findEntity(args.entities,'cities');
+        var city = builder.EntityRecognizer.findEntity(args.entities, 'cities');
+        send.session(city);
+        send.session(city.entity);
         if (city){
+            send.session(city);
+            send.session(city.entity);
             var city_name = city.entity;
             var url = "http://api.apixu.com/v1/current.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name;
             request(url,function(error,response,body){

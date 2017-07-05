@@ -35,11 +35,7 @@ bot.dialog('/',intents);
 intents.matches('whatisWeather',[
     function(session,args){
         var city = builder.EntityRecognizer.findEntity(args.entities, 'cities');
-        send.session(city);
-        send.session(city.entity);
-        if (city){
-            send.session(city);
-            send.session(city.entity);
+            if (city){
             var city_name = city.entity;
             var url = "http://api.apixu.com/v1/current.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name;
             request(url,function(error,response,body){
@@ -70,8 +66,6 @@ intents.matches('whatisWeatherForecast', [
     function (session, args) {
         var city = builder.EntityRecognizer.findEntity(args.entities, 'cities');
         if (city) {
-            send.session(city);
-            send.session(city.entity);
             var city_name = city.entity;
             var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "&days=5";
             request(url, function (error, response, body) {
@@ -115,7 +109,7 @@ intents.matches('whatisNews', [
     function (session, args) {
         var newssource = builder.EntityRecognizer.findEntity(args.entities, 'news-source');
         var newscategory = builder.EntityRecognizer.findEntity(args.entities, 'topic');
-        session.send(newssource + " " + newscategory);
+        session.send(newssource.entity + " " + newscategory.entity);
         if (newssource) {
             var newssource_name = newssource.entity;
             var url = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=11236426c78341079081cb95797f80ae";

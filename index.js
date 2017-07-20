@@ -32,37 +32,6 @@ var intents = new builder.IntentDialog({
 
 bot.dialog('/',intents);
 
-intents.matches('whatisWeather', [
-function(session, args) {
-    var city = builder.EntityRecognizer.findEntity(args.entities, 'cities');
-    if (city) {
-        var city_name = city.entity;
-        var url = "http://api.apixu.com/v1/current.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name;
-                request(url, function (error, response, body) {
-                body = JSON.parse(body);
-                city_proper = body.location.name;
-                temp = body.current.temp_c;
-                text = body.current.condition.text;
-                session.send("It's " + temp + " degrees celsius in " + city_proper + ", " + text + ".");
-            }
-       });
-} else {
-    builder.Prompts.text(session, 'Which city do you want the weather for?');
-}
-    },
-function(session, results) {
-    var city_name = results.response;
-    var url = "http://api.apixu.com/v1/current.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name;
-    request(url, function (error, response, body) {
-        body = JSON.parse(body);
-        city_proper = body.location.name;
-        temp = body.current.temp_c;
-        text = body.current.condition.text;
-        session.send("It's " + temp + " degrees celsius in " + city_proper + ", " + text + ".");
-    });
-}
-]);
-
 
 intents.matches('whatisWeatherForecast', [
     function(session, args){

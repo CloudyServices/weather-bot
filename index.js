@@ -38,16 +38,14 @@ function(session, args) {
     if (city) {
         var city_name = city.entity;
         var url = "http://api.apixu.com/v1/current.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name;
-        setInterval(function () {
-            request(url, function (error, response, body) {
+                request(url, function (error, response, body) {
                 body = JSON.parse(body);
                 city_proper = body.location.name;
                 temp = body.current.temp_c;
                 text = body.current.condition.text;
                 session.send("It's " + temp + " degrees celsius in " + city_proper + ", " + text + ".");
             }
-                }, 5000);
-    });
+       });
 } else {
     builder.Prompts.text(session, 'Which city do you want the weather for?');
 }

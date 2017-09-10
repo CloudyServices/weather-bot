@@ -60,7 +60,7 @@ intents.matches('whatisWeatherForecast', [
                 session.send(city_proper + ": <br/>" + dateday1 + ", " + tempday1 + "C, " + textday1 + ".<br/>" + dateday2 + ", " + tempday2 + "C, " + textday2 + ".<br/>" + dateday3 + ", " + tempday3 + "C, " + textday3 + ".<br/>" + dateday4 + ", " + tempday4 + "C, " + textday4 + ".<br/>" + dateday5 + ", " + tempday5 + "C, " + textday5 + ".");
             });
         } else {
-            builder.Prompts.text(session, 'Which city do you want the weather for?');
+            builder.Prompts.text(session, 'Which cities do you want the weather for?');
         }
     },
     function (session, results) {

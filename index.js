@@ -38,7 +38,7 @@ intents.matches('whatisWeatherForecast', [
         var city = builder.EntityRecognizer.findEntity(args.entities, 'cities');
         if (city) {
             var city_name = city.entity;
-            var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "&days=5";
+            var url = "http://api.apixu.com/v1/forecast.json?key=202c78c8ac8c42aab09154737172406&q=" + city_name + "&days=6";
             request(url, function (error, response, body) {
                 body = JSON.parse(body);
                 city_proper = body.location.name;
@@ -57,7 +57,10 @@ intents.matches('whatisWeatherForecast', [
                 dateday5 = moment(body.forecast.forecastday[4].date).format('dddd');
                 tempday5 = body.forecast.forecastday[4].day.maxtemp_c;
                 textday5 = body.forecast.forecastday[4].day.condition.text;
-                session.send(city_proper + ": <br/>" + dateday1 + ", " + tempday1 + "C, " + textday1 + ".<br/>" + dateday2 + ", " + tempday2 + "C, " + textday2 + ".<br/>" + dateday3 + ", " + tempday3 + "C, " + textday3 + ".<br/>" + dateday4 + ", " + tempday4 + "C, " + textday4 + ".<br/>" + dateday5 + ", " + tempday5 + "C, " + textday5 + ".");
+                dateday6 = moment(body.forecast.forecastday[5].date).format('dddd');
+                tempday6 = body.forecast.forecastday[5].day.maxtemp_c;
+                textday6 = body.forecast.forecastday[5].day.condition.text;
+                session.send(city_proper + ": <br/>" + dateday1 + ", " + tempday1 + "C, " + textday1 + ".<br/>" + dateday2 + ", " + tempday2 + "C, " + textday2 + ".<br/>" + dateday3 + ", " + tempday3 + "C, " + textday3 + ".<br/>" + dateday4 + ", " + tempday4 + "C, " + textday4 + ".<br/>" + dateday5 + ", " + tempday5 + "C, " + textday5 + ".<br/>" + dateday6 + ", " + tempday6 + "C, " + textday6 + ".");
             });
         } else {
             builder.Prompts.text(session, 'Which cities do you want the weather for?');
